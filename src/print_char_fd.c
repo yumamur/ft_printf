@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   print_char_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
+/*   By: yumamur <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 04:36:29 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/17 05:29:09 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/27 23:49:28 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 01:42:31 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+int	print_char_fd(char c, int fd)
 {
-	if (!lst || !new)
-		return ;
-	if (!*lst)
-		*lst = new;
-	else
-	{
-		(ft_lstlast(*lst))->next = new;
-		(ft_lstlast(*lst))->next = NULL;
-	}
+	write(fd, &c, fd);
+	return (1);
 }

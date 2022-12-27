@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   reset_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/17 04:22:15 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/17 04:33:12 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/25 06:41:44 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 01:42:12 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-t_list	*ft_lstnew(void *content)
+void	reset_struct(t_printf *lst)
 {
-	t_list	*node;
-	node = malloc(sizeof(t_list));
-	if (node == NULL)
-		return (0);
-	node->content = content;
-	node->next = NULL;
-	return (node);
+	lst->flag = 0;
+	lst->ch = 0;
+	lst->str = 0;
+	lst->pt = 0;
+	lst->dec = 0;
+	lst->ux = 0;
 }

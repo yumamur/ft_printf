@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/12 18:01:05 by yumamur           #+#    #+#             */
-/*   Updated: 2022/11/15 17:39:20 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/24 19:38:13 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 01:42:38 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-int	ft_isdigit(int c)
+int	ft_printf(const char *str, ...)
 {
-	return (c >= 48 && c <= 57);
+	va_list		args;
+	t_printf	lst;
+
+	va_start(args, str);
+	lst.ret = 0;
+	printer(str, args, &lst, 1);
+	va_end(args);
+	return (lst.ret);
 }

@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   printer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/14 15:00:39 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/17 06:43:44 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/25 06:47:08 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 01:42:23 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/ft_printf.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	printer(const char *str, va_list args, t_printf *lst, int fd)
 {
-	size_t	i;
+	int	index;
 
-	i = 0;
-	while (s1[i] == s2[i] && s1[i] != '\0' && s2[i] != '\0')
-		i++;
-	return ((unsigned char) s1[i] - (unsigned char) s2[i]);
+	index = 0;
+	while (str[index])
+	{
+		if (str[index] == '%')
+		{
+			index++;
+			lst->flag = str[index];
+			check_conv(args, lst, fd);
+			reset_struct(lst);
+		}
+		else
+			lst->ret += print_char_fd(str[index], 1);
+		index++;
+	}
 }
