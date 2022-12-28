@@ -1,17 +1,18 @@
 NAME	=	libftprintf.a
 
 SRC		=	$(wildcard src/*.c)
-
 OBJ		=	$(patsubst src/%.c, obj/%.o, $(SRC))
 
-CFLAGS	=	-Wall -Werror -Wextra -c -o
+CFLAGS	=	-Wall -Werror -Wextra -c
 CC		=	gcc
 LIB		=	ar -rcs
 RM		=	rm -rf
 
-obj/%.o:	src/%.c
-	@$(CC) $(CFLAGS) $@ $<
+obj/%.o:	src/%.c obj
+	@$(CC) $(CFLAGS) -o $@ $<
 all:	$(NAME)
+obj:
+	mkdir obj
 $(NAME):	$(OBJ)
 	@$(LIB) $(NAME) $(OBJ) 
 clean:
