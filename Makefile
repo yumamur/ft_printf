@@ -15,7 +15,7 @@ all:	$(NAME)
 $(NAME):	$(OBJ)
 	@$(LIB) $(NAME) $(OBJ) 
 clean:
-	@$(RM) $(OBJ)
+	@$(RM) $(OBJ) obj/
 
 fclean: clean
 	@$(RM) $(NAME)
