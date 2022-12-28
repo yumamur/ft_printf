@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   reset_struct.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 19:38:13 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/28 01:42:38 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/28 14:59:17 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 17:37:09 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../include/ft_printf_bonus.h"
 
-int	ft_printf(const char *str, ...)
+void	reset_values(t_values *valse)
 {
-	va_list		args;
-	t_printf	lst;
+	valse->ch = 0;
+	valse->str = 0;
+	valse->pt = 0;
+	valse->dec = 0;
+	valse->ux = 0;
+}
 
-	va_start(args, str);
-	lst.ret = 0;
-	the_str(str, args, &lst, 1);
-	va_end(args);
-	return (lst.ret);
+void	reset_flag(t_flag *flags)
+{
+	flags->flag = 0;
+	flags->asterix = 0;
+	flags->dot = 0;
+	flags->left = 0;
+	flags->padd_left = 0;
+	flags->padd_right = 0;
+	flags->width = 0;
 }

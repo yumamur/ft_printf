@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   the_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 19:38:13 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/28 01:42:38 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/25 06:47:08 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 17:43:46 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../include/ft_printf_bonus.h"
 
-int	ft_printf(const char *str, ...)
+void	the_str(const char *str, va_list args, t_values *valse, int fd)
 {
-	va_list		args;
-	t_printf	lst;
+	int		index;
+	t_flag	*flags;
 
-	va_start(args, str);
-	lst.ret = 0;
-	the_str(str, args, &lst, 1);
-	va_end(args);
-	return (lst.ret);
+	index = 0;
+	flags = malloc(sizeof(t_flag));
+	while (str[index])
+	{
+		if (str[index] == '%')
+		{
+			index += flag_check(&str[index], flags);
+			reset_values(valse);
+		}
+		else
+			valse->ret += print_char_fd(str[index], fd);
+		index++;
+	}
+	reset_flags(flags);
+	free(flags);
 }

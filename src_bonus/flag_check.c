@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   flag_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/24 19:38:13 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/28 01:42:38 by yumamur          ###   ########.fr       */
+/*   Created: 2022/12/28 17:11:51 by yumamur           #+#    #+#             */
+/*   Updated: 2022/12/28 17:43:28 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "../include/ft_printf_bonus.h"
 
-int	ft_printf(const char *str, ...)
+int	flag_check(const char *str, t_flag *flags)
 {
-	va_list		args;
-	t_printf	lst;
+	int	index;
 
-	va_start(args, str);
-	lst.ret = 0;
-	the_str(str, args, &lst, 1);
-	va_end(args);
-	return (lst.ret);
+	index = 0;
+	while (str[index])
+	{
+		flags->flag = str[index];
+	}
+	return(index);
 }

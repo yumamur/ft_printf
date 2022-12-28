@@ -29,8 +29,8 @@ typedef struct s_list
 }	t_printf;
 
 int		ft_printf(const char *str, ...);
+void	the_str(const char *str, va_list args, t_printf *lst, int fd);
 void	reset_struct(t_printf *lst);
-void	printer(const char *str, va_list args, t_printf *lst, int fd);
 void	check_conv(va_list args, t_printf *lst, int fd);
 size_t	ft_strlen(const char *str);
 int		print_char_fd(char c, int fd);
