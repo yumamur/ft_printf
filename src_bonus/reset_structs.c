@@ -24,10 +24,16 @@ void	reset_values(t_values *valse)
 void	reset_flag(t_flag *flags)
 {
 	flags->flag = 0;
-	flags->asterix = 0;
-	flags->dot = 0;
+	flags->hyphen = 0;
+	flags->zero = 0;
+	flags->hash = 0;
+	flags->precision = 0;
+	flags->plus = 0;
+	flags->space = 0;
 	flags->left = 0;
 	flags->padd_left = 0;
 	flags->padd_right = 0;
-	flags->width = 0;
+	flags->maxwidth = 0;
+	flags->minwidth = 0;
+	flags->error = 0;
 }

@@ -72,11 +72,6 @@ int	print_unsignednbr_fd(unsigned int n, int fd)
 	int	ret;
 
 	ret = 0;
-	if (n < 0)
-	{
-		n *= -1;
-		ret += print_char_fd('-', fd);
-	}
 	if (n <= 9)
 		ret += print_char_fd(n + 48, fd);
 	else

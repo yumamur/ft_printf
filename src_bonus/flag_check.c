@@ -17,9 +17,21 @@ int	flag_check(const char *str, t_flag *flags)
 	int	index;
 
 	index = 0;
-	while (str[index])
+	while (str[index] && !ft_strchr("csdiupxX%", str[index]))
 	{
-		flags->flag = str[index];
+		if (str[index] == '-')
+			flags->hyphen += 1;
+		if (str[index] == '#')
+			flags->hash += 1;
+		if (str[index] == '+')
+			flags->plus += 1;
+		if (str[index] == ' ')
+			flags->space += 1;
+		if (str[index] == '0')
+			flags->zero += 1;
+		if (str[index] == '.' && flags->precision > 0)
+			index += flag_precision(&(str[index]), flags);
+		index++;
 	}
-	return(index);
+	return (index);
 }

@@ -15,21 +15,21 @@
 void	the_str(const char *str, va_list args, t_values *valse, int fd)
 {
 	int		index;
-	t_flag	*flags;
+	t_flag	flags;
 
 	index = 0;
-	flags = malloc(sizeof(t_flag));
 	while (str[index])
 	{
-		if (str[index] == '%')
+		reset_flags(&flags);
+		if (str[index] == '%' && !(flags.error))
 		{
-			index += flag_check(&str[index], flags);
+			index += flag_check(&str[index], &flags);
+			sendto_print(args, valse, &flags, fd);
 			reset_values(valse);
 		}
 		else
 			valse->ret += print_char_fd(str[index], fd);
 		index++;
 	}
-	reset_flags(flags);
-	free(flags);
+	reset_flags(&flags);
 }
