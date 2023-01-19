@@ -29,7 +29,7 @@ $(OBJ_B_DIR)/%.o:	$(SRC_B_DIR)/%.c bonus_objects
 
 all:	$(NAME)
 
-#Creating directories for ".o" files#
+#	Creating directories for ".o" files
 objects:
 	@mkdir -p obj
 bonus_objects:
@@ -39,7 +39,8 @@ $(NAME):	$(OBJ)
 	@$(LIB) $(NAME) $(OBJ) 
 
 clean:
-	@$(RM) $(OBJ_DIR) $(OBJ_B_DIR)
+	@$(RM) $(OBJ_DIR)
+	$(OBJ_B_DIR)
 
 bonus: $(OBJ_B)
 	@$(LIB) $(NAME) $(OBJ_B)

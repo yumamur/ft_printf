@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   flag_funcs.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 11:05:23 by yumamur           #+#    #+#             */
+/*   Updated: 2023/01/19 11:05:34 by yumamur          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/ft_printf_bonus.h"
 
 int	flag_precision(const char *str, t_flag *flags)
@@ -16,7 +28,6 @@ int	flag_precision(const char *str, t_flag *flags)
 	{
 		while (str[index] >= '0' && str[index] <= '9')
 		{
-
 		}
 	}
 	return (index);

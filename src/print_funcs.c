@@ -6,7 +6,7 @@
 /*   By: yumamur <yumamur@student.42.tr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 19:43:19 by yumamur           #+#    #+#             */
-/*   Updated: 2022/12/28 01:42:27 by yumamur          ###   ########.fr       */
+/*   Updated: 2023/01/19 11:05:05 by yumamur          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	print_nbr_fd(int n, int fd)
 	int	ret;
 
 	ret = 0;
+	if (n == -2147483648)
+		return (ret += print_str_fd("-2147483648", fd));
 	if (n < 0)
 	{
 		n *= -1;
@@ -38,7 +40,7 @@ int	print_nbr_fd(int n, int fd)
 		ret += print_char_fd(n + 48, fd);
 	else
 	{
-		print_nbr_fd((n / 10), fd);
+		ret += print_nbr_fd((n / 10), fd);
 		ret += print_char_fd((n % 10) + 48, fd);
 	}
 	return (ret);
@@ -49,7 +51,7 @@ int	print_hex_fd(unsigned int n, int fd, char flag)
 	int	ret;
 
 	ret = 0;
-	if (n < 16)
+	if (n > 0 && n < 16)
 	{
 		if (n < 16 && flag == 'x')
 			ret += print_char_fd((n % 16)["0123456789abcdef"], fd);
@@ -58,10 +60,10 @@ int	print_hex_fd(unsigned int n, int fd, char flag)
 	}
 	else
 	{
-		print_hex_fd(n / 16, fd, flag);
-		if (n < 16 && flag == 'x')
+		ret += print_hex_fd(n / 16, fd, flag);
+		if (flag == 'x')
 			ret += print_char_fd((n % 16)["0123456789abcdef"], fd);
-		if (n < 16 && flag == 'X')
+		if (flag == 'X')
 			ret += print_char_fd((n % 16)["0123456789ABCDEF"], fd);
 	}
 	return (ret);
@@ -76,7 +78,7 @@ int	print_unsignednbr_fd(unsigned int n, int fd)
 		ret += print_char_fd(n + 48, fd);
 	else
 	{
-		print_nbr_fd((n / 10), fd);
+		ret += print_nbr_fd((n / 10), fd);
 		ret += print_char_fd((n % 10) + 48, fd);
 	}
 	return (ret);
@@ -88,10 +90,13 @@ int	print_pt_fd(unsigned long pt, int fd)
 
 	ret = 0;
 	if (pt < 16)
+	{
+		ret += print_str_fd("0x", fd);
 		ret += print_char_fd((pt % 16)["0123456789abcdef"], fd);
+	}
 	else
 	{
-		print_pt_fd(pt / 16, fd);
+		ret += print_pt_fd(pt / 16, fd);
 		ret += print_char_fd((pt % 16)["0123456789abcdef"], fd);
 	}
 	return (ret);
