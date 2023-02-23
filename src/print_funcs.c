@@ -51,19 +51,16 @@ int	print_hex_fd(unsigned int n, int fd, char flag)
 	int	ret;
 
 	ret = 0;
-	if (n > 0 && n < 16)
+	if (n >= 16)
+	{
+		ret += print_hex_fd(n / 16, fd, flag);
+		ret += print_hex_fd(n % 16, fd, flag);
+	}
+	else
 	{
 		if (n < 16 && flag == 'x')
 			ret += print_char_fd((n % 16)["0123456789abcdef"], fd);
 		if (n < 16 && flag == 'X')
-			ret += print_char_fd((n % 16)["0123456789ABCDEF"], fd);
-	}
-	else
-	{
-		ret += print_hex_fd(n / 16, fd, flag);
-		if (flag == 'x')
-			ret += print_char_fd((n % 16)["0123456789abcdef"], fd);
-		if (flag == 'X')
 			ret += print_char_fd((n % 16)["0123456789ABCDEF"], fd);
 	}
 	return (ret);
